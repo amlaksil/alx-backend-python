@@ -2,20 +2,21 @@
 """
 9-element_length
 """
-from typing import List, Tuple
+from typing import Iterable, Sequence, List, Tuple
 
 
-def element_length(lst: List[str]) -> List[Tuple[str, int]]:
+def element_length(lst: Iterable[Sequence]) -> List[Tuple[Sequence, int]]:
     """
-    Returns a list of tuples containing elements from the input list
-    and their corresponding lengths.
+    Returns a list of tuples where each tuple contains an element from the
+    input iterable along with its length.
 
     Args:
-        lst (List[str]): The input list of strings.
+        lst (Iterable[Sequence]): An iterable containing sequences.
 
     Returns:
-        List[Tuple[str, int]]: A list of tuples containing elements from
-        the input list and their lengths.
+        List[Tuple[Sequence, int]]: A list of tuples where each tuple
+        contains an element from the input iterable `lst`
+        and its corresponding length.
 
     Example:
         >>> element_length(['apple', 'banana', 'cherry'])
