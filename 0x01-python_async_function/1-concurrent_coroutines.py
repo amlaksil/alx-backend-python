@@ -6,7 +6,6 @@ This module provides utility functions for asynchronous operations.
 """
 
 import asyncio
-import heapq
 from typing import List
 wait_random = __import__('0-basic_async_syntax').wait_random
 
@@ -23,8 +22,6 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     Returns:
         List[float]: The list of delays (float values) in ascending order.
     """
-    delays = []
-    for _ in range(n):
-        delay = await wait_random(max_delay)
-        heapq.heappush(delays, delay)
-    return delays
+    coroutines = [wait_random(max_delay) for _ in range(n)]
+    results = await asyncio.gather(*coroutines)
+    return sorted(results)
