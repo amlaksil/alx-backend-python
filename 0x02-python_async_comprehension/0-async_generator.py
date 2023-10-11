@@ -7,10 +7,10 @@ This module provides an asynchronous generator coroutine.
 """
 import asyncio
 import random
-from typing import AsyncIterator
+from typing import Generator
 
 
-async def async_generator() -> AsyncIterator[float]:
+async def async_generator() -> Generator[float, None, None]:
     """
     Coroutine that generates random numbers asynchronously.
 
