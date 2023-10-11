@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Module:
+Module: 1-async_comprehension
 
 This module provides an asynchronous comprehension coroutine.
 """
@@ -19,5 +19,5 @@ async def async_comprehension() -> List[float]:
         numbers = await async_comprehension()
         print(numbers)
     """
-    numbers = [float(number) async for number in async_generator()]
+    numbers = [number async for number in async_generator()]
     return numbers
