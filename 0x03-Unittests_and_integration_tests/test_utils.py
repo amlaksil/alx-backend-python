@@ -97,13 +97,23 @@ class TestMemoize(unittest.TestCase):
 
     def test_memoize(self):
         """
+        Test the memoize decorator.
+
+        This method creates an instance of TestClass and tests the behavior
+        of the memoize decorator. It patches the a_method of TestClass with
+        a mock object and verifies that the a_method is called only once. It
+        also checks that the results of the memoized property are equal.
         """
         class TestClass:
+            """Class for testing the memoize decorator."""
+
             def a_method(self):
+                """Method to be memoized."""
                 return 42
 
             @memoize
             def a_property(self):
+                """Memoized property."""
                 return self.a_method()
         # Create an instance of TestClass
         test_object = TestClass()
