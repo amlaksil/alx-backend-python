@@ -3,9 +3,10 @@
 This module contains a test class for the GithubOrgClient class.
 """
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 from parameterized import parameterized
 from client import GithubOrgClient
+from typing import Any, Dict, Tuple
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -23,7 +24,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("abc",),
     ])
     @patch('client.get_json')
-    def test_org(self, org_name, mock_get_json):
+    def test_org(self, org_name: str, mock_get_json: MagicMock) -> None:
         """
         Test the org method of GithubOrgClient.
 
@@ -50,17 +51,17 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_get_json.return_value = {"org_key": "org_value"}
 
         # Create an instance of GithubOrgClient
-        client = GithubOrgClient(org_name)
+        client: GithubOrgClient = GithubOrgClient(org_name)
 
         # Call the org method
-        result = client.org
+        result: Dict[str, Any] = client.org
 
         # Assert that get_json was called once with the expected argument
-        mock_get_json.assert_called_once_with(
-            "https://api.github.com/orgs/{org}".format(org=org_name))
+        expected_url: str = f"https://api.github.com/orgs/{org_name}"
+        mock_get_json.assert_called_once_with(expected_url)
 
         # Assert that the result is the expected value
-        expected_result = {"org_key": "org_value"}
+        expected_result: Dict[str, Any] = {"org_key": "org_value"}
         self.assertEqual(result, expected_result)
 
 
